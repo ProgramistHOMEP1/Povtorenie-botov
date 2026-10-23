@@ -1,13 +1,15 @@
 import asyncio
 from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message
+from dotenv import load_dotenv
+import os
 
 
+load_dotenv()
+mytoken = os.getenv("TOKEN")
 
-mytoken = "8866695598:AAE51lbv-xCDGd8lw2suJosHvk0pIrCcI-4"
 mybot = Bot(token=mytoken) 
 mydispatcher = Dispatcher()
-
 
 async def main():
     await mydispatcher.start_polling(mybot)
