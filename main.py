@@ -3,7 +3,7 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message
 from dotenv import load_dotenv
 import os
-
+from buttons import main_buttons, math_buttons
 
 load_dotenv()
 mytoken = os.getenv("TOKEN")
@@ -17,7 +17,7 @@ async def main():
 
 @mydispatcher.message(F.text=="/start")
 async def command_start(message: Message) -> None:
-    await message.answer(f"Привет, {message.from_user.first_name}")
+    await message.answer(f"Привет, {message.from_user.first_name}", reply_markup=main_buttons)
     print(message.from_user)
 
 
@@ -37,11 +37,25 @@ async def command_age(message):
     if int(newtext[1])==int(newtext[2]):
         await message.answer(f"Число ваши числа одинаковые!")
 
-# Домашнее задание:
-# Создать бота с тремя командами: 
-# /start - выводить приветствие
-# /donat - выводить информацию о том, куда тебе можно донатить
-# /better N1 N2 - выводить большее из двух чисел (N1 - первое число, N2 - второе число)
+
+@mydispatcher.message(F.text=="Математика")
+async def command_start(message: Message) -> None:
+    await message.answer(f"Математика", reply_markup=math_buttons)
+    print(message.from_user)
+
+
+
+# По команде “/start” должна появляться клавиатура
+# Скопировать Математика 
+#   Текст По нажатию кнопки «Математика» должна появляться клавиатура
+# Скопировать Плюс Минус Умножить 
+#    Главное меню - По кнопкам «Плюс» «Минус» и «Умножить» должны быть соответствующие функции
+# (на каждую кнопку выводить соотв текст "Тест кнопки ПЛЮС", "Тест кнопки МИНУС", "Тест кнопки УМНОЖИТЬ")
+# - По нажатию «Главное меню» должна вновь появляться начальная клавиатура
+# - По нажатию кнопки "Текст" должно высвечиваться сообщение "Тут должен быть текст". Клавиатура должна заменяться на:
+# Скопировать Главное меню
+
+
 
 
 
