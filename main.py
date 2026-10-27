@@ -34,7 +34,8 @@ async def command_age(message):
         await message.answer(f"Число {newtext[1]} больше!")
     if int(newtext[2])>int(newtext[1]):
         await message.answer(f"Число {newtext[2]} больше!")
-    
+    if int(newtext[1])==int(newtext[2]):
+        await message.answer(f"Число ваши числа одинаковые!")
 
 # Домашнее задание:
 # Создать бота с тремя командами: 
