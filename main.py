@@ -66,19 +66,18 @@ async def command_start(message: Message) -> None:
 @mydispatcher.message(F.text=="Плюс")
 async def command_start(message: Message, state: FSMContext) -> None:
     await message.answer(f"Введи первое число: ", reply_markup=math_buttons)
-    await state.update_data(number1=message.text)
     await state.set_state(States.first_number)
 
 @mydispatcher.message(States.first_number)
 async def command_start(message: Message, state: FSMContext) -> None:
     await message.answer(f"Отлично, теперь напиши второе число:", reply_markup=math_buttons)
-    await state.update_data(number2=message.text)
+    await state.update_data(number=message.text)
     await state.set_state(States.second_number)
 
 @mydispatcher.message(States.second_number)
 async def command_start(message: Message, state: FSMContext) -> None:
     temp_data = await state.get_data()
-    await message.answer(f"Результат сложения ваших чисел: {temp_data['number1']}+{temp_data['number1']}", reply_markup=math_buttons)
+    await message.answer(f"Результат сложения ваших чисел: {temp_data['number1']+message.text}", reply_markup=math_buttons)
 
 
 @mydispatcher.message(F.text=="Минус")
