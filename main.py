@@ -43,6 +43,13 @@ async def command_start(message: Message) -> None:
     await message.answer(f"Математика", reply_markup=math_buttons)
     print(message.from_user)
 
+@mydispatcher.message(F.text=="Русский")
+async def command_start(message: Message) -> None:
+    await message.answer(f"Русский", reply_markup=russian_buttons)
+    print(message.from_user)
+
+
+
 
 @mydispatcher.message(F.text=="Плюс")
 async def command_start(message: Message) -> None:
