@@ -77,7 +77,7 @@ async def command_start(message: Message, state: FSMContext) -> None:
 @mydispatcher.message(States.second_number)
 async def command_start(message: Message, state: FSMContext) -> None:
     temp_data = await state.get_data()
-    await message.answer(f"Результат сложения ваших чисел: {temp_data['number']+message.text}", reply_markup=math_buttons)
+    await message.answer(f"Результат сложения ваших чисел: {int(temp_data['number'])+int(message.text)}", reply_markup=math_buttons)
 
 
 @mydispatcher.message(F.text=="Минус")
