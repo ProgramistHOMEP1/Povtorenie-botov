@@ -3,7 +3,7 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.types import Message
 from dotenv import load_dotenv
 import os
-from buttons import main_buttons, math_buttons
+from buttons import main_buttons, math_buttons, russian_buttons
 
 load_dotenv()
 mytoken = os.getenv("TOKEN")
@@ -42,6 +42,33 @@ async def command_age(message):
 async def command_start(message: Message) -> None:
     await message.answer(f"Математика", reply_markup=math_buttons)
     print(message.from_user)
+
+
+@mydispatcher.message(F.text=="Плюс")
+async def command_start(message: Message) -> None:
+    await message.answer(f"Тест кнопки ПЛЮС", reply_markup=math_buttons)
+    print(message.from_user)
+
+@mydispatcher.message(F.text=="Минус")
+async def command_start(message: Message) -> None:
+    await message.answer(f"Тест кнопки МИНУС", reply_markup=math_buttons)
+    print(message.from_user)
+
+@mydispatcher.message(F.text=="Умножить")
+async def command_start(message: Message) -> None:
+    await message.answer(f"Тест кнопки Умножить", reply_markup=math_buttons)
+    print(message.from_user)
+
+@mydispatcher.message(F.text=="Главное меню")
+async def command_start(message: Message) -> None:
+    await message.answer(f"Главное меню", reply_markup=main_buttons)
+    print(message.from_user)
+
+@mydispatcher.message(F.text=="Текст")
+async def command_start(message: Message) -> None:
+    await message.answer(f"Тут должен быть текст", reply_markup=russian_buttons)
+    print(message.from_user)
+
 
 
 
