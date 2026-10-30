@@ -78,7 +78,6 @@ async def command_start(message: Message, state: FSMContext) -> None:
 @mydispatcher.message(States.second_number)
 async def command_start(message: Message, state: FSMContext) -> None:
     temp_data = await state.get_data()
-    await message.answer(f"{temp_data['name']}, поздравляем с успешной регистрацией!")
     await message.answer(f"Результат сложения ваших чисел: {temp_data['number1']}+{temp_data['number1']}", reply_markup=math_buttons)
 
 
