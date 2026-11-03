@@ -10,7 +10,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from inline_buttons import main_inline_keyboard
 from aiogram.types import CallbackQuery
-
+from inline_buttons import math_inline_keyboard
 
 load_dotenv()
 mytoken = os.getenv("TOKEN")
@@ -26,18 +26,24 @@ async def main():
 
 @mydispatcher.message(F.text=="/start")
 async def command_start(message: Message) -> None:
-    await message.answer("Добро пожаловать в бота, {message.from_user.first_name}", reply_markup=main_inline_keyboard)
+    await message.answer(f"Добро пожаловать в бота, {message.from_user.first_name}", reply_markup=main_inline_keyboard)
 
 
-@mydispatcher.callback_query(F.data == "btn1")
+@mydispatcher.callback_query(F.data == "btnmath")
 async def handle_btn1(callback: CallbackQuery):
     await callback.answer("Нажата кнопка 1")
-    await callback.message.answer("Обратное сообщение")
+    await callback.message.answer("Обратное сообщение", reply_markup=math_inline_keyboard)
+
+@mydispatcher.callback_query(F.data == "btnmathplus")
+async def handle_btn1(callback: CallbackQuery):
+    await callback.answer("Нажата кнопка ПЛЮС")
+    await callback.message.answer("Введите первое число:", reply_markup=math_inline_keyboard)
 
 
-
-
-
+@mydispatcher.callback_query(F.data == "btnmathminus")
+async def handle_btn1(callback: CallbackQuery):
+    await callback.answer("Нажата кнопка МИНУС")
+    await callback.message.answer("Введите первое число:", reply_markup=math_inline_keyboard)
 
 
 
