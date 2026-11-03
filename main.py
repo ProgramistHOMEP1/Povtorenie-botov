@@ -19,8 +19,8 @@ dp = Dispatcher(storage=MemoryStorage())
 class States(StatesGroup):
     first_number = State()
     second_number = State()
-
-
+    minus_first_number = State()
+    minus_second_number = State()
 
 
 
@@ -78,6 +78,28 @@ async def command_start(message: Message, state: FSMContext) -> None:
 async def command_start(message: Message, state: FSMContext) -> None:
     temp_data = await state.get_data()
     await message.answer(f"Результат сложения ваших чисел: {int(temp_data['number'])+int(message.text)}", reply_markup=math_buttons)
+    await state.clear()  
+
+
+
+@mydispatcher.message(F.text=="Минус")
+async def command_start(message: Message, state: FSMContext) -> None:
+    await message.answer(f"Введи первое число: ", reply_markup=math_buttons)
+    await state.set_state(States.minus_first_number)
+
+@mydispatcher.message(States.minus_first_number)
+async def command_start(message: Message, state: FSMContext) -> None:
+    await message.answer(f"Отлично, теперь напиши второе число:", reply_markup=math_buttons)
+    await state.update_data(number=message.text)
+    await state.set_state(States.minus_first_number)
+
+@mydispatcher.message(States.minus_second_number)
+async def command_start(message: Message, state: FSMContext) -> None:
+    temp_data = await state.get_data()
+    await message.answer(f"Результат вычитания ваших чисел: {int(temp_data['number'])-int(message.text)}", reply_markup=math_buttons)
+    await state.clear()  
+
+
 
 
 @mydispatcher.message(F.text=="Минус")
@@ -109,16 +131,10 @@ async def command_start(message: Message) -> None:
 
 
 
-# По команде “/start” должна появляться клавиатура
-# Скопировать Математика 
-#   Текст По нажатию кнопки «Математика» должна появляться клавиатура
-# Скопировать Плюс Минус Умножить 
-#    Главное меню - По кнопкам «Плюс» «Минус» и «Умножить» должны быть соответствующие функции
-# (на каждую кнопку выводить соотв текст "Тест кнопки ПЛЮС", "Тест кнопки МИНУС", "Тест кнопки УМНОЖИТЬ")
-# - По нажатию «Главное меню» должна вновь появляться начальная клавиатура
-# - По нажатию кнопки "Текст" должно высвечиваться сообщение "Тут должен быть текст". Клавиатура должна заменяться на:
-# Скопировать Главное меню
+# Домашнее задание:
 
+# Аналогично кнопке "+" сделать кнопку "-". 
+# Последовательно спрашивать два числа и выдавать результат их разницу
 
 
 
