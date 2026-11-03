@@ -33,3 +33,42 @@ async def command_start(message: Message) -> None:
 async def handle_btn1(callback: CallbackQuery):
     await callback.answer("Нажата кнопка 1")
     await callback.message.answer("Обратное сообщение")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
