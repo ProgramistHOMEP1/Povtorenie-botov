@@ -32,7 +32,7 @@ async def command_start(message: Message) -> None:
 @mydispatcher.callback_query(F.data == "btnmath")
 async def handle_btn1(callback: CallbackQuery):
     await callback.answer("Нажата кнопка 1")
-    await callback.message.answer("Обратное сообщение", reply_markup=math_inline_keyboard)
+    await callback.message.edit_text("Обратное сообщение", reply_markup=math_inline_keyboard)
 
 @mydispatcher.callback_query(F.data == "btnmathplus")
 async def handle_btn1(callback: CallbackQuery):
