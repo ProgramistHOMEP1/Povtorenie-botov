@@ -91,7 +91,7 @@ async def command_start(message: Message, state: FSMContext) -> None:
 async def command_start(message: Message, state: FSMContext) -> None:
     await message.answer(f"Отлично, теперь напиши второе число:", reply_markup=math_buttons)
     await state.update_data(number=message.text)
-    await state.set_state(States.minus_first_number)
+    await state.set_state(States.minus_second_number)
 
 @mydispatcher.message(States.minus_second_number)
 async def command_start(message: Message, state: FSMContext) -> None:
