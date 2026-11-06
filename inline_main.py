@@ -58,7 +58,7 @@ async def handle_btn1(callback: CallbackQuery):
 
 
 
-@mydispatcher.callback_query(F.data == "btnmathplus")
+@mydispatcher.callback_query(F.data == "btnplus")
 async def handle_btn1(callback: CallbackQuery, state: FSMContext):
     await callback.answer("Нажата кнопка ПЛЮС")
     await callback.message.answer("Введите первое число:", reply_markup=math_inline_keyboard)
