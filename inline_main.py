@@ -70,11 +70,11 @@ async def command_start(message: Message, state: FSMContext) -> None:
     await state.update_data(number=message.text)
     await state.set_state(States.second_number)
 
-
 @mydispatcher.message(States.second_number)
 async def command_start(message: Message, state: FSMContext) -> None:
     temp_data = await state.get_data()
-    await message.answer(f"Результат сложения ваших чисел: {int(temp_data['number'])+int(message.text)}", reply_markup=math_inline_keyboard)
+    await message.answer(f"Результат сложения ваших чисел: {int(temp_data['number'])+int(message.text)}")
+    await message.answer(f"Вы в меню математики, {message.from_user.first_name}", reply_markup=math_inline_keyboard)
     await state.clear()  
 
 
