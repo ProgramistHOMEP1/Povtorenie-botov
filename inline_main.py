@@ -29,10 +29,19 @@ async def command_start(message: Message) -> None:
     await message.answer(f"Добро пожаловать в бота, {message.from_user.first_name}", reply_markup=main_inline_keyboard)
     await message.delete()
 
+
+@mydispatcher.callback_query(F.data == "btnmain")
+async def handle_btn1(callback: CallbackQuery):
+    await callback.answer("Нажата кнопка ГЛАВНОЕ МЕНЮ")
+    await callback.message.edit_text("Главное меню", reply_markup=main_inline_keyboard)
+
+
+
+
 @mydispatcher.callback_query(F.data == "btnmath")
 async def handle_btn1(callback: CallbackQuery):
     await callback.answer("Нажата кнопка 1")
-    await callback.message.edit_text(f"Добро пожаловать в бота, {callback.message.from_user.first_name}", reply_markup=math_inline_keyboard)
+    await callback.message.edit_text(f"Добро пожаловать в бота, {callback.from_user.first_name}", reply_markup=math_inline_keyboard)
 
 
 
@@ -49,7 +58,9 @@ async def handle_btn1(callback: CallbackQuery):
 
 
 
+# Домашнее задание:
 
+# Аналогично кнопке "+" сделать кнопку "-". Последовательно спрашивать два числа и выдавать результат их разницу
 
 
 
