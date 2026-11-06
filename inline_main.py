@@ -61,12 +61,12 @@ async def handle_btn1(callback: CallbackQuery):
 @mydispatcher.callback_query(F.data == "btnplus")
 async def handle_btn1(callback: CallbackQuery, state: FSMContext):
     await callback.answer("Нажата кнопка ПЛЮС")
-    await callback.message.answer("Введите первое число:", reply_markup=math_inline_keyboard)
+    await callback.message.answer("Введите первое число:")
     await state.set_state(States.first_number)
 
 @mydispatcher.message(States.first_number)
 async def command_start(message: Message, state: FSMContext) -> None:
-    await message.answer(f"Отлично, теперь напиши второе число:", reply_markup=math_inline_keyboard)
+    await message.answer(f"Отлично, теперь напиши второе число:")
     await state.update_data(number=message.text)
     await state.set_state(States.second_number)
 
